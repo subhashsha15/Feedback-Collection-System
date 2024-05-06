@@ -1,0 +1,49 @@
+.landingpage-content {
+    padding: 0px 150px;
+    margin: 100px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 180px;
+}
+
+.landingpage-content-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10rem;
+}
+
+.landingpage-content-info:nth-child(even) {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.landingpage-content-info div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.landingpage-content-info div h1 {
+    font-size: 40px;
+}
+
+.landingpage-content-info div p {
+    color: #414143;
+    font-size: 20px;
+}
+
+.landingpage-content-info div button {
+    all: unset;
+    background-color: #024D3E;
+    color: white;
+    font-size: 18px;
+    padding: 13px 27px;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.landingpage-content-info div button:hover {
+    cursor: pointer;
+}
