@@ -1,0 +1,49 @@
+.formcard-content{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.formcard-content h1{
+    font-size: 32px;
+    color: #024D3E;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+.feedback-cards{
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.feedback-card{
+    height: 363px;
+    width: 360px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.card-img{
+    height: 70%;
+    border-radius: 20px 20px 0px 0px;
+}
+.card-img img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+}
+.card-title{
+    background-color: #024D3E;
+    color: white;
+    height: 20%;
+    border-radius: 0px 0px 20px 20px;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+}

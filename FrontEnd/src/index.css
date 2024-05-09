@@ -8,3 +8,8 @@ body{
   background-color: #E9FFF3;
   font-family: "Outfit", sans-serif;
 }
+
+.router-link{
+  text-decoration: none;
+  color: inherit;
+}
