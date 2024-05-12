@@ -16,7 +16,7 @@ const Navbar = () => {
             <div className="nav-container">
                 <div className="nav-content">
                     <div className="nav-logo">
-                        <img src="/Logo.svg" alt="" />
+                    <Link to="/home" className="router-link"><img src="/Logo.svg" alt="" /></Link>
                     </div>
                     <button className="nav-login-btn" onClick={handleLoginButtonClick}>Login</button>
                     {showLoginOption && (<div onClick={handleLoginOptionsClick} className="login-options">
