@@ -1,0 +1,35 @@
+.accordion{
+    --bs-accordion-active-bg:none !important;   
+}
+.accordion-button:focus {
+    box-shadow: none !important;
+}
+.accordion-item{
+    margin-bottom: 20px !important;
+    border: none !important;
+    background-color: #E9FFF3 !important;
+    /* color: green !important; */
+}
+.accordion-header{
+    background-color: greenyellow !important;
+    color: green !important;
+}
+.accordion-button {
+    color: #FFFFFF !important;
+    background-color: #024d3eeb !important;
+}
+.response-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-right: 50px;
+    font-size: 18px;
+}
+
+.response-card-info,.response-card-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}

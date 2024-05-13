@@ -6,7 +6,7 @@ import HomePage from "./pages/homepage/HomePage";
 import LandingPage from "./pages/landingpage/LandingPage";
 import SignUp from "./pages/signup/SignUp";
 import Admin from "./pages/admin/Admin";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 const Layout = () => {
   const location  = useLocation();
 

@@ -3,7 +3,9 @@ import "./Analysis.css";
 const Analysis = () => {
     return (
         <>
-            <div>Analysis</div>
+            <div className='analysis-container'>
+                <img src="/coming-soon.jpg" alt="" />
+            </div>
         </>
     )
 }
