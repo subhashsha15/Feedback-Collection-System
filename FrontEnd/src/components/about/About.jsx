@@ -1,9 +1,9 @@
 import React from "react";
 import "./About.css";
-const About = () => {
+const About = ({id}) => {
     return (
         <>
-            <div className="about-container">
+            <div id={id} className="about-container">
                 <div className="about-content">
                     <div className="about-background">
                         <img src="/about-background.jpg" alt="" />

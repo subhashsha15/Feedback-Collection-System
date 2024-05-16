@@ -1,4 +1,4 @@
-import { Outlet, Route, RouterProvider, createBrowserRouter, createRoutesFromElements,useLocation } from "react-router-dom";
+import { Outlet, Route, RouterProvider, createBrowserRouter, createRoutesFromElements, useLocation } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import Form from "./components/form/Form";
 import Navbar from "./components/navbar/Navbar";
@@ -7,8 +7,9 @@ import LandingPage from "./pages/landingpage/LandingPage";
 import SignUp from "./pages/signup/SignUp";
 import Admin from "./pages/admin/Admin";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 const Layout = () => {
-  const location  = useLocation();
+  const location = useLocation();
 
   // Function to check if the current route is 'admin'
   const isCurrentRouteAdmin = () => {
@@ -30,7 +31,7 @@ function App() {
         <Route path="" element={<LandingPage />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="home" element={<HomePage />} />
-        <Route path="form" element={<Form />} />
+        <Route path="form/:title" element={<Form />} />
         <Route path="admin" element={<Admin />} />
       </Route>
     )

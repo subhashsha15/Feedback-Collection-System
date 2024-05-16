@@ -9,6 +9,7 @@
 .formcard-content h1{
     font-size: 32px;
     color: #024D3E;
+    /* color: white; */
     font-weight: 900;
     letter-spacing: 1px;
     margin-bottom: 25px;
@@ -26,6 +27,11 @@
     border-radius: 20px;
     overflow: hidden;
 }
+.feedback-card:hover .card-img img{
+    scale: 1.1;
+    transition: all .5s linear;
+    cursor: pointer;
+}
 .card-img{
     height: 70%;
     border-radius: 20px 20px 0px 0px;
@@ -36,10 +42,12 @@
     object-fit: cover;
     object-position: center;
     overflow: hidden;
+    /* scale: 1; */
+    transition: all .5s linear;
 }
 .card-title{
     background-color: #024D3E;
-    color: white;
+    color: white !important;
     height: 20%;
     border-radius: 0px 0px 20px 20px;
     font-size: 22px;

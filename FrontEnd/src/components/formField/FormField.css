@@ -1,0 +1,20 @@
+.form-content-middle label{
+    font-size: 18px;
+}
+.form-content-middle input[type="text"],input[type=number]{
+    all:unset;
+    border-bottom: 1px solid #E8E8E8;
+    padding-bottom: 4px;
+}
+.rectangle-box{
+    max-width: 643px;   
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #FFFFFF;
+    height: fit-content;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 10px;
+    border: 1px solid #76767641;
+}

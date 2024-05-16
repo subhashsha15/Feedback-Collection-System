@@ -1,9 +1,9 @@
 import React from "react";
 import "./ContactUs.css";
-const ContactUs = () => {
+const ContactUs = ({id}) => {
     return (
         <>
-            <div className="contact-container">
+            <div id={id} className="contact-container">
                 <div className="contact-content">
                     <h1>Contact Us</h1>
                     <div className="contact-userDetails">

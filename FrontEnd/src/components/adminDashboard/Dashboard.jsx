@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Dashboard.css"
-import { FormTypes } from "../../FormTypesData.js"
+import { FormData } from "../../FormTypesData.js"
 
 const Dashboard = () => {
 
@@ -28,7 +28,7 @@ const Dashboard = () => {
                     </div>
                     <div className="dashboard-content-bottom">
                         {
-                            FormTypes.map((item) => {
+                            FormData.map((item) => {
                                 return (
                                     <>
                                         <div className="dashboard-card">

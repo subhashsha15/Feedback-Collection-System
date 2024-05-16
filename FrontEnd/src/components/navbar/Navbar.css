@@ -1,5 +1,6 @@
 .nav-container {
     width: 100%;
+    /* background-color: #D9DFE5; */
 }
 
 .nav-content {
@@ -70,6 +71,21 @@
     background-color: #024d3ef9;
 }
 
+.nav-links {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    right: 16%;
+    font-size: 18px;
+    font-weight: 400;
+}
+/* .nav-links a{
+    color: #024d3ef9;
+    text-decoration: none;
+} */
+
 @keyframes slideFromTop {
     from {
         transform: translateY(-60%);
@@ -78,6 +94,5 @@
 
     to {
         transform: translateY(0%);
-        /* z-index: -1; */
     }
 }

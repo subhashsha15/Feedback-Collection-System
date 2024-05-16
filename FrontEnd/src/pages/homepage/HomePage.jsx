@@ -9,9 +9,9 @@ const HomePage = () => {
         <>
             <div className='homepage-container'>
                 <div className="homepage-content">
-                    <About />
-                    <FormCard />
-                    <ContactUS />
+                    <About id='about' />
+                    <FormCard id='forms' />
+                    <ContactUS id='contact' />
                 </div>
             </div>
         </>
