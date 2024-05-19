@@ -13,8 +13,8 @@ const FormCard = ({ id }) => {
                             FormData.map((cardItem) => {
                                 return (
                                     <>
-                                        <Link to={`/form/${cardItem.formTitle}`} key={cardItem.formId} className="router-link">
-                                            <div  className="feedback-card" >
+                                        <Link to={`/form/${cardItem.formTitle}`}  className="router-link">
+                                            <div  className="feedback-card" key={cardItem.formId}>
                                                 <div className="card-img">
                                                     <img src={cardItem.formCardImg} alt="" />
                                                 </div>

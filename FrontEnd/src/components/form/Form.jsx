@@ -1,38 +1,114 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Formik, Form as FormikForm } from "formik";
+import * as Yup from "yup";
 import "./Form.css";
-import { useParams } from "react-router-dom";
 import { FormData } from "../../FormTypesData";
 import FormField from "../formField/FormField";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";
 const Form = () => {
     const { title } = useParams();
-    const formConfig = FormData.find((form) => form.formTitle === title);
+    const formDetails = FormData.find((form) => form.formTitle === title);
+    const navigate = useNavigate();
+
+    if (!formDetails) {
+        return <div>Form not found</div>;
+    }
+
+    const initialValues = formDetails.formFields.reduce((acc, field) => {
+        acc[field.name] = field.type === "checkbox" ? false : "";
+        return acc;
+    }, {});
+
+    const validationSchema = Yup.object(
+        formDetails.formFields.reduce((acc, field) => {
+            switch (field.type) {
+                case "email":
+                    acc[field.name] = Yup.string().email("Invalid email address").required("This field is required");
+                    break;
+                case "number":
+                    acc[field.name] = Yup.number().required("This field is required");
+                    break;
+                case "checkbox":
+                    acc[field.name] = Yup.boolean().required("This field is required");
+                    break;
+                case "radio":
+                    acc[field.name] = Yup.string().required("Select One Option");
+                    break;
+                case "rating":
+                    acc[field.name] = Yup.number().required("Select Atleast 1 Star");
+                    break;
+                default:
+                    acc[field.name] = Yup.string().required("This field is required");
+                    break;
+            }
+            return acc;
+        }, {})
+    );
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    const handleModalClose = () => {
+        // navigate("/home");
+    };
     return (
-        <>
-            <div className="form-container">
-                <div className="form-content">
-                    <div className="form-content-top">
-                        <img src={formConfig.formImg} alt="" />
+        <div className="form-container">
+            <div className="form-content">
+                <div className="form-content-top">
+                    <img src={formDetails.formImg} alt="" />
+                </div>
+                <div className="form-content-middle">
+                    <div className="rectangle-box form-title">
+                        <div className="form-title-name">{formDetails.formTitle}</div>
+                        <div className="form-title-desc">{formDetails.formDescription}</div>
                     </div>
-                    <div className="form-content-middle">
-                        <div className="rectangle-box form-title">
-                            <div className="form-title-name">{formConfig.formTitle}</div>
-                            <div className="form-title-desc">{formConfig.formDescription}</div>
-                        </div>
-                        {formConfig.formFields.map((field, index) => (
-                            <FormField key={index} field={field} />
-                        ))}
-                        <div className="form-content-bottom">
-                            <button className="clear-btn">Clear</button>
-                            <button className="form-submit-btn">Submit</button>
+                    <Formik className="formik-css"
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={(values, { setSubmitting, resetForm }) => {
+                            console.log("onsubmit...", values);
+                            setSubmitting(false);
+                            resetForm();
+                        }}
+                    >
+                        {({ isSubmitting,isValid }) => (
+                            <FormikForm>
+                                {formDetails.formFields.map((field, index) => (
+                                    <FormField key={index} field={field} />
+                                ))}
+                                <div className="form-content-bottom">
+                                    <button type="reset" className="clear-btn">Clear</button>
+                                    <button type="submit" data-bs-toggle={isValid?"modal":""} data-bs-target="#exampleModal" className="form-submit-btn" disabled={isSubmitting}>
+                                        Submit
+                                    </button>
+                                </div>
+                            </FormikForm>
+                        )}
+                    </Formik>
+                    {/* Boostrap Modal */}
+                    {/* <!-- Modal --> */}
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title w-100 text-center fs-2" id="exampleModalLabel">Congratulations...</h5>
+                                </div>
+                                <div className="modal-body  w-100 text-center fs-6">
+                                    Response Successfully Submitted!!
+                                </div>
+                                <div className="modal-footer" onClick={handleModalClose}>
+                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </>
-    )
-}
+        </div>
+    );
+};
 
 export default Form;

@@ -1,13 +1,23 @@
-.form-content-middle label{
+.form-content-middle label {
     font-size: 18px;
 }
-.form-content-middle input[type="text"],input[type=number]{
-    all:unset;
+
+.form-content-middle input[type="text"],
+input[type=email],
+input[type=number],
+input[type=date]{
+    all: unset;
     border-bottom: 1px solid #E8E8E8;
     padding-bottom: 4px;
 }
-.rectangle-box{
-    max-width: 643px;   
+
+.form-content-middle input:hover,
+label:hover {
+    cursor: pointer;
+}
+
+.rectangle-box {
+    width: 73.2%;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -17,4 +27,26 @@
     padding: 25px;
     margin-bottom: 10px;
     border: 1px solid #76767641;
+}
+
+.checkbox-field label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.radio-options {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    /* margin-left: 10px; */
+}
+
+.radio-options div input {
+    margin-right: 8px;
+}
+.error{
+    color: red;
+    font-size: 14px;
+    /* margin-top: -10px; */
 }
