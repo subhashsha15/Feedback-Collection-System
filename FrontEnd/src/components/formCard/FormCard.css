@@ -23,11 +23,11 @@
 }
 .feedback-card{
     height: 363px;
-    width: 360px;
+    width: 320px;
     border-radius: 20px;
     overflow: hidden;
 }
-.feedback-card:hover .card-img img{
+.card-img:hover img{
     scale: 1.1;
     transition: all .5s linear;
     cursor: pointer;
@@ -35,20 +35,21 @@
 .card-img{
     height: 70%;
     border-radius: 20px 20px 0px 0px;
+    overflow: hidden;
 }
 .card-img img{
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
-    overflow: hidden;
+   
     /* scale: 1; */
     transition: all .5s linear;
 }
 .card-title{
     background-color: #024D3E;
     color: white !important;
-    height: 20%;
+    height: 18%;
     border-radius: 0px 0px 20px 20px;
     font-size: 22px;
     display: flex;

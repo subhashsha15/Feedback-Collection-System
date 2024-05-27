@@ -3,8 +3,13 @@ const mongoose = require("mongoose");
 const dotenv = require('dotenv');
 
 const usersRoute=require("./Routes/userRoute.js");
+const formRoute=require("./Routes/Form.Route.js")
 
+const cors = require('cors');
 const app = express();
+
+//Middlewares
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
 dotenv.config();
 
@@ -19,7 +24,8 @@ const connectDB = async () => {
     }
 }
 
-app.use('/api/user', usersRoute);
+app.use('/feedback/api/user', usersRoute);
+app.use('/feedback/api/form', formRoute);
 
 
 app.listen(port, () => {

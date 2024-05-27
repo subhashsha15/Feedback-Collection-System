@@ -2,7 +2,7 @@
     font-size: 18px;
 }
 
-.form-content-middle input[type="text"],
+.form-content-middle input[type=text],
 input[type=email],
 input[type=number],
 input[type=date]{

@@ -74,14 +74,21 @@ const Form = () => {
                             resetForm();
                         }}
                     >
-                        {({ isSubmitting,isValid }) => (
+                        {({ isSubmitting, isValid }) => (
                             <FormikForm>
                                 {formDetails.formFields.map((field, index) => (
                                     <FormField key={index} field={field} />
                                 ))}
                                 <div className="form-content-bottom">
                                     <button type="reset" className="clear-btn">Clear</button>
-                                    <button type="submit" data-bs-toggle={isValid?"modal":""} data-bs-target="#exampleModal" className="form-submit-btn" disabled={isSubmitting}>
+                                    <button
+                                        type="submit"
+                                        // data-bs-toggle={isValid ? "modal" : ""}
+                                        // data-bs-dismiss={isValid ? "" : "modal"}
+                                        data-bs-target={isValid ? "" : "#exampleModal"}
+                                        className="form-submit-btn"
+                                        disabled={isSubmitting}
+                                    >
                                         Submit
                                     </button>
                                 </div>
@@ -94,10 +101,10 @@ const Form = () => {
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h5 className="modal-title w-100 text-center fs-2" id="exampleModalLabel">Congratulations...</h5>
+                                    <h5 className="modal-title w-100 text-center fs-2" id="exampleModalLabel">CONGRATULATIONS!!!</h5>
                                 </div>
                                 <div className="modal-body  w-100 text-center fs-6">
-                                    Response Successfully Submitted!!
+                                    Response Successfully Submitted 😀😀
                                 </div>
                                 <div className="modal-footer" onClick={handleModalClose}>
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>

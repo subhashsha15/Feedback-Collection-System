@@ -70,13 +70,13 @@
     background-color: #024d3eeb;
 }
 
-form{
+/* form{
     display: flex;
     width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+} */
 .modal-header,.modal-footer,.modal-body{
     border: none !important;
     color: white !important;

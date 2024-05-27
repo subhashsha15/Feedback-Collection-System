@@ -1,84 +1,126 @@
-import React, { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa6";
-
-import "./SignUp.css";
+import React, { useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa6';
+import { useDispatch, useSelector } from 'react-redux';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { registerUser, loginUser } from '../../ReduxStore/authSlice';
+import './SignUp.css';
 
 const SignUp = () => {
-    const [isSignUp, setIsSignUp] = useState("signup");
+    const [isSignUp, setIsSignUp] = useState('signup');
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isSignUpSuccessful, setIsSignUpSuccessful] = useState(false);
+    const dispatch = useDispatch();
+    const { loading, error, user } = useSelector((state) => state.auth);
+    console.log("error", error);
+
+    const validationSchema = Yup.object().shape({
+        name: isSignUp === 'signup' ? Yup.string().required('Full Name is required') : null,
+        email: Yup.string().email('Invalid email').required('Email is required'),
+        password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+    });
+
+    const handleFormSubmit = (values, { setSubmitting }) => {
+        if (isSignUp === 'signup') {
+            dispatch(registerUser(values)).then((response) => {
+                if (response.meta.requestStatus === 'fulfilled') {
+                    setIsSignUpSuccessful(true);
+                }
+            });
+        } else {
+            dispatch(loginUser(values));
+        }
+        setSubmitting(false);
+    };
 
     const handleAfterSignUpSuccess = () => {
-        setIsSignUp("login");
+        setIsSignUp('login');
         setIsSignUpSuccessful(false);
-    }
-    return (
-        <>
-            <div className="signup-container">
-                <div className={isSignUp == "signup" ? "signup-content" : "signup-content login-content"}>
-                    <div className="signup-content-left">
-                        <img src="/Signup-img.png" alt="" />
-                    </div>
-                    <div className="signup-content-right">
-                        {!isSignUpSuccessful ? (<>
-                            <div className="signup-content-right-heading">
-                                <h2>{isSignUp == "signup" ? "Sign up with free trail" : "Welcome back!"}</h2>
-                                <p>{isSignUp == "signup" ? "Empower your experience, sign up for a free account today" : "Please login to accces your account."} </p>
-                            </div>
-                            <div className="signup-content-userDetails">
-                                {isSignUp == "signup" && (<div className="user-name">
-                                    <label htmlFor="name">Full Name</label>
-                                    <input id="name" type="text" placeholder="ex. Jhon Doe" required />
-                                </div>)}
-                                <form action="">
+    };
 
-                                <div className="user-email">
-                                    <label htmlFor="email">Email</label>
-                                    <input id="email" type="email" placeholder="ex. jhondoe@gmail.com" required />
-                                </div>
-                                </form>
-                                <div className="user-password">
-                                    <label htmlFor="password">Password</label>
-                                    <div className="password-icon">
-                                        <input id="password" type={!isPasswordVisible ? "password" : "text"} placeholder="Enter password" />
-                                        <span onClick={() => setIsPasswordVisible(prev => !prev)}>
-                                            {!isPasswordVisible ? <FaEye /> : <FaEyeSlash />}
-                                        </span>
-                                    </div>
-                                </div>
+    return (
+        <div className="signup-container">
+            <div className={isSignUp === 'signup' ? 'signup-content' : 'signup-content login-content'}>
+                <div className="signup-content-left">
+                    <img src="/Signup-img.png" alt="" />
+                </div>
+                <div className="signup-content-right">
+                    {loading && <div className="loading-spinner">Loading...</div>}
+                    {(!loading && isSignUpSuccessful) && (
+                        <div className="signup-success-container">
+                            <img src="/success-img.png" alt="" />
+                            <h1>CONGRATULATIONS!</h1>
+                            <p>Your account has been created successfully.</p>
+                            <div onClick={handleAfterSignUpSuccess}>Proceed to Login</div>
+                        </div>
+                    )}
+                    {error && <div className="error-message">Error: {error}</div>}
+                    {!loading && !isSignUpSuccessful && !error && (
+                        <>
+                            <div className="signup-content-right-heading">
+                                <h2>{isSignUp === 'signup' ? 'Sign up with free trial' : 'Welcome back!'}</h2>
+                                <p>{isSignUp === 'signup' ? 'Empower your experience, sign up for a free account today' : 'Please login to access your account.'}</p>
                             </div>
-                            <div className="privacy-policy">By registering for an account, you are consenting to our <span>Terms of Service</span> and confirming that you have reviewed and accepted the <span>Global Privacy Statement</span>.</div>
-                            <div className="submit-btn">{isSignUp == "signup" ? "Get Started Free" : "Login"}</div>
+                            <Formik
+                                initialValues={{ name: '', email: '', password: '' }}
+                                validationSchema={validationSchema}
+                                onSubmit={handleFormSubmit}
+                            >
+                                {({ isSubmitting }) => (
+                                    <Form className="signup-content-userDetails">
+                                        {isSignUp === 'signup' && (
+                                            <div className="user-name">
+                                                <label htmlFor="name">Full Name</label>
+                                                <Field id="name" name="name" type="text" placeholder="ex. John Doe" />
+                                                <ErrorMessage name="name" component="div" className="error" />
+                                            </div>
+                                        )}
+                                        <div className="user-email">
+                                            <label htmlFor="email">Email</label>
+                                            <Field id="email" name="email" type="email" placeholder="ex. johndoe@gmail.com" />
+                                            <ErrorMessage name="email" component="div" className="error" />
+                                        </div>
+                                        <div className="user-password">
+                                            <label htmlFor="password">Password</label>
+                                            <div className="password-icon">
+                                                <Field id="password" name="password" type={!isPasswordVisible ? 'password' : 'text'} placeholder="Enter password" />
+                                                <span onClick={() => setIsPasswordVisible((prev) => !prev)}>
+                                                    {!isPasswordVisible ? <FaEye /> : <FaEyeSlash />}
+                                                </span>
+                                            </div>
+                                            <ErrorMessage name="password" component="div" className="error" />
+                                        </div>
+                                        <div className="privacy-policy">
+                                            By registering for an account, you are consenting to our <span>Terms of Service</span> and confirming that you have reviewed and accepted the <span>Global Privacy Statement</span>.
+                                        </div>
+                                        <button type="submit" className="submit-btn" disabled={isSubmitting || loading}>
+                                            {isSignUp === 'signup' ? 'Get Started Free' : 'Login'}
+                                        </button>
+                                    </Form>
+                                )}
+                            </Formik>
                             <div className="login-link">
-                                {isSignUp === "signup" ? (
+                                {isSignUp === 'signup' ? (
                                     <>
-                                        Already have an account? <span onClick={() => setIsSignUp("login")}>Login</span>
+                                        Already have an account? <span onClick={() => setIsSignUp('login')}>Login</span>
                                     </>
                                 ) : (
                                     <>
-                                        Don't have an account yet? <span onClick={() => setIsSignUp("signup")}>Sign up</span>
+                                        Don't have an account yet? <span onClick={() => setIsSignUp('signup')}>Sign up</span>
                                     </>
                                 )}
                             </div>
-                            {isSignUp == "login" && (<div className="password-reset">
-                                Forgot password? <span>Reset Now</span>
-                            </div>)}
-                        </>
-                        ) : (
-                            <>
-                                <div className="signup-success-container">
-                                    <img src="/success-img.png" alt="" />
-                                    <h1>CONGRATULATIONS!</h1>
-                                    <p>Your account has been created successfully.</p>
-                                    <div onClick={handleAfterSignUpSuccess}>Proceed to Login</div>
+                            {isSignUp === 'login' && (
+                                <div className="password-reset">
+                                    Forgot password? <span>Reset Now</span>
                                 </div>
-                            </>
-                        )}
-                    </div>
+                            )}
+                        </>
+                    )}
                 </div>
             </div>
-        </>
-    )
-}
+        </div>
+    );
+};
 
 export default SignUp;
