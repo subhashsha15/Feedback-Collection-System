@@ -1,0 +1,8 @@
+.active>.page-link,
+.page-link.active {
+    background-color: #105B3D !important;
+}
+
+.page-link:focus {
+    box-shadow: none !important;
+}

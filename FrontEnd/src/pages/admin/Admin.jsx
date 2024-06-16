@@ -1,10 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import './Admin.css'
 import Dashboard from '../../components/adminDashboard/Dashboard';
 import Analysis from '../../components/analysis/Analysis';
 import FeedbackResponse from '../../components/feedbackResponse/FeedbackResponse'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchForms } from '../../ReduxStore/formSlice';
 const Admin = () => {
   const [selectedItem, setSelectedItem] = useState("dashboard");
+  const dispatch = useDispatch();
+  const forms = useSelector((state) => state.forms.forms.data);
+  console.log("admin", forms);
+  const status = useSelector((state) => state.forms.status);
+  const error = useSelector((state) => state.forms.error);
+
+  useEffect(() => {
+    dispatch(fetchForms());
+  }, []);
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -47,7 +58,7 @@ const Admin = () => {
           </div>
           <div className="vertical-line"></div>
           <div className="admin-content-main">
-            {selectedItem === "dashboard" ? <Dashboard /> : selectedItem === "feedback" ? <FeedbackResponse /> : <Analysis />}
+            {selectedItem === "dashboard" ? <Dashboard /> : selectedItem === "feedback" ? <FeedbackResponse forms={forms} /> : <Analysis />}
           </div>
         </div>
       </div>

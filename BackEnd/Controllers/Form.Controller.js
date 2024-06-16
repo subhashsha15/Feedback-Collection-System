@@ -13,7 +13,29 @@ const timestamp = new Date().toLocaleString('en-US', options)
 
 const formFetch = async (req, res) => {
     try {
-        const submissions = await Form.find();
+        const { country, state, formTitle, search } = req.query;
+
+        let query = {};
+
+        if (country) {
+            query['fields.label'] = 'Country';
+            query['fields.value'] = country;
+        }
+        if (state) {
+            query['fields.label'] = 'State';
+            query['fields.value'] = state;
+        }
+        if (formTitle) {
+            query.formTitle = formTitle;
+        }
+        if (search) {
+            query.$or = [
+                { formTitle: { $regex: search, $options: 'i' } },
+                { 'fields.value': { $regex: search, $options: 'i' } },
+            ];
+        }
+
+        const submissions = await Form.find(query);
         res.status(200).json({
             status: 'success',
             data: submissions
@@ -22,6 +44,7 @@ const formFetch = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
+
 const formSubmit = async (req, res) => {
     try {
         const formData = req.body;

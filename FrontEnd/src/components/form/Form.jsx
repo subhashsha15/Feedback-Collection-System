@@ -5,13 +5,15 @@ import * as Yup from "yup";
 import "./Form.css";
 import { FormData } from "../../FormTypesData";
 import FormField from "../formField/FormField";
+import { useDispatch, useSelector } from 'react-redux';
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { submitForm } from '../../ReduxStore/formSlice';
 const Form = () => {
     const { title } = useParams();
     const formDetails = FormData.find((form) => form.formTitle === title);
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     if (!formDetails) {
         return <div>Form not found</div>;
     }
@@ -54,6 +56,19 @@ const Form = () => {
     const handleModalClose = () => {
         // navigate("/home");
     };
+    const handleSubmit = (values, { setSubmitting, resetForm }) => {
+        const formattedData = {
+            formTitle: title,
+            fields: formDetails.formFields.map((field) => ({
+                label: field.label,
+                value: values[field.name]
+            }))
+        };
+
+        dispatch(submitForm(formattedData));
+        setSubmitting(false);
+        resetForm();
+    };
     return (
         <div className="form-container">
             <div className="form-content">
@@ -68,11 +83,7 @@ const Form = () => {
                     <Formik className="formik-css"
                         initialValues={initialValues}
                         validationSchema={validationSchema}
-                        onSubmit={(values, { setSubmitting, resetForm }) => {
-                            console.log("onsubmit...", values);
-                            setSubmitting(false);
-                            resetForm();
-                        }}
+                        onSubmit={handleSubmit}
                     >
                         {({ isSubmitting, isValid }) => (
                             <FormikForm>

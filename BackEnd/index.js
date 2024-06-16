@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 
 const usersRoute=require("./Routes/userRoute.js");
 const formRoute=require("./Routes/Form.Route.js")
+const dashboardRoute=require("./Routes/dashBoard.Route.js")
 
 const cors = require('cors');
 const app = express();
@@ -26,6 +27,7 @@ const connectDB = async () => {
 
 app.use('/feedback/api/user', usersRoute);
 app.use('/feedback/api/form', formRoute);
+app.use('/feedback/api', dashboardRoute);
 
 
 app.listen(port, () => {

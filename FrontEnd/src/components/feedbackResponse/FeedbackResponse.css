@@ -34,6 +34,9 @@
     background-color: #E9FFF3 !important;
     /* border-radius: 0px !important; */
 }
+.form-control option:hover{
+   cursor: pointer;
+}
 
 .feedback-response-content-searchbox div {
     display: flex;
@@ -47,4 +50,8 @@
 
 .feedback-response-content-searchbox div input {
     all: unset;
+}
+.feedback-response-content-bottom{
+    /* overflow-y: scroll; */
+    height: 100%;
 }
