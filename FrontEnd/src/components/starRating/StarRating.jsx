@@ -11,7 +11,7 @@ const StarRating = ({ field }) => {
     };
 
     const currentRating = Number(fieldProps.value) || 0;
-//    console.log("rating",currentRating);
+
     return (
         <div>
             <StarRatings

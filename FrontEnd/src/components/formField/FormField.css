@@ -5,7 +5,7 @@
 .form-content-middle input[type=text],
 input[type=email],
 input[type=number],
-input[type=date]{
+input[type=date] {
     all: unset;
     border-bottom: 1px solid #E8E8E8;
     padding-bottom: 4px;
@@ -39,14 +39,27 @@ label:hover {
     display: flex;
     align-items: center;
     gap: 25px;
-    /* margin-left: 10px; */
 }
 
 .radio-options div input {
     margin-right: 8px;
 }
-.error{
+
+.error {
     color: red;
     font-size: 14px;
-    /* margin-top: -10px; */
+}
+
+/* star rating */
+
+@media screen and (max-width: 766px) {
+    .star-ratings {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .star-grad {
+        align-self: flex-start;
+    }
 }

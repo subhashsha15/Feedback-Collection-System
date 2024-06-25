@@ -7,4 +7,25 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+    /* object-position: center center; */
+}
+
+/* Media Query */
+
+@media screen and (max-width: 766px) {
+    .analysis-container img{
+        object-fit: contain;
+    }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1023px) {
+    .analysis-container img{
+        object-fit: contain;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+    .analysis-container img{
+        object-fit: contain;
+    }
 }

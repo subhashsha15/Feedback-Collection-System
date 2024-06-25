@@ -1,18 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { registerUser, loginUser } from '../../ReduxStore/authSlice';
+import { login } from "../../ReduxStore/loginSlice";
+import { useLocation, useNavigate } from 'react-router-dom';
 import './SignUp.css';
+import Alert from '../../components/alert/Alert';
 
 const SignUp = () => {
     const [isSignUp, setIsSignUp] = useState('signup');
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isSignUpSuccessful, setIsSignUpSuccessful] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
     const dispatch = useDispatch();
     const { loading, error, user } = useSelector((state) => state.auth);
-    console.log("error", error);
+    console.log("error",error);
+    const loginStatus = useSelector((state) => state.login);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (loginStatus === "Admin") {
+            setIsSignUp('login');
+        }
+    }, [loginStatus]);
+
+    useEffect(() => {
+        if (error) {
+            setAlertMessage(error);
+            setShowAlert(true);
+        }
+    }, [error]);
 
     const validationSchema = Yup.object().shape({
         name: isSignUp === 'signup' ? Yup.string().required('Full Name is required') : null,
@@ -27,8 +47,18 @@ const SignUp = () => {
                     setIsSignUpSuccessful(true);
                 }
             });
+        } else if (loginStatus === "Admin") {
+            if (values.email === "subhashkumar@gmail.com" && values.password === "subhash@123") {
+                navigate('/admin');
+            } else {
+                alert("Invalid admin credentials");
+            }
         } else {
-            dispatch(loginUser(values));
+            dispatch(loginUser(values)).then((response) => {
+                if (response.meta.requestStatus === 'fulfilled') {
+                    navigate('/home');
+                }
+            });
         }
         setSubmitting(false);
     };
@@ -36,6 +66,10 @@ const SignUp = () => {
     const handleAfterSignUpSuccess = () => {
         setIsSignUp('login');
         setIsSignUpSuccessful(false);
+    };
+
+    const closeAlert = () => {
+        setShowAlert(false);
     };
 
     return (
@@ -54,15 +88,18 @@ const SignUp = () => {
                             <div onClick={handleAfterSignUpSuccess}>Proceed to Login</div>
                         </div>
                     )}
-                    {error && <div className="error-message">Error: {error}</div>}
-                    {!loading && !isSignUpSuccessful && !error && (
+                    {(!loading && !isSignUpSuccessful) && (
                         <>
                             <div className="signup-content-right-heading">
                                 <h2>{isSignUp === 'signup' ? 'Sign up with free trial' : 'Welcome back!'}</h2>
                                 <p>{isSignUp === 'signup' ? 'Empower your experience, sign up for a free account today' : 'Please login to access your account.'}</p>
                             </div>
                             <Formik
-                                initialValues={{ name: '', email: '', password: '' }}
+                                initialValues={{
+                                    name: '',
+                                    email: loginStatus === "Admin" ? "subhashkumar@gmail.com" : "",
+                                    password: loginStatus === "Admin" ? "subhash@123" : ""
+                                }}
                                 validationSchema={validationSchema}
                                 onSubmit={handleFormSubmit}
                             >
@@ -119,6 +156,7 @@ const SignUp = () => {
                     )}
                 </div>
             </div>
+            {showAlert && <Alert Status="ERROR" Message={alertMessage}  onClose={closeAlert}/>}
         </div>
     );
 };

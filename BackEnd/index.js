@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require('dotenv');
 
+dotenv.config();
 const usersRoute=require("./Routes/userRoute.js");
 const formRoute=require("./Routes/Form.Route.js")
 const dashboardRoute=require("./Routes/dashBoard.Route.js")
@@ -12,7 +13,6 @@ const app = express();
 //Middlewares
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
-dotenv.config();
 
 const port = 5000;
 

@@ -38,7 +38,7 @@ const FeedbackResponse = ({ forms: initialForms }) => {
     }, [selectedCountry, selectedState, selectedFormTitle, searchTerm, initialForms]);
 
     const getCountries = (forms) => {
-        const countries = forms.flatMap(item =>
+        const countries = forms?.flatMap(item =>
             item.fields.filter(field => field.label === "Country").map(field => field.value)
         );
         return [...new Set(countries)].sort();
@@ -46,14 +46,14 @@ const FeedbackResponse = ({ forms: initialForms }) => {
     };
 
     const getStates = (forms) => {
-        const states = forms.flatMap(item =>
+        const states = forms?.flatMap(item =>
             item.fields.filter(field => field.label === "State").map(field => field.value)
         );
         return [...new Set(states)].sort();
     };
 
     const getFormTitles = (forms) => {
-        const titles = forms.map(item => item.formTitle);
+        const titles = forms?.map(item => item.formTitle);
         return [...new Set(titles)].sort();
     };
 

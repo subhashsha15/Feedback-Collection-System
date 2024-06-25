@@ -28,7 +28,7 @@
     display: flex;
     justify-content: space-between;
     align-self: flex-start;
-    gap:20px;
+    gap: 20px;
 }
 
 .contact-userDetails input,
@@ -48,13 +48,71 @@ textarea {
     gap: 4px;
     width: 100%;
 }
-#name,#email,#message::placeholder{
+
+#name,
+#email,
+#message::placeholder {
     font-size: 16px;
 }
+
 .contact-submit-btn {
     background-color: white;
     color: #024D3E;
     font-size: 18px;
     padding: 10px 50px;
     border-radius: 5px;
+}
+
+/* Media Query */
+
+@media screen and (max-width: 766px) {
+    .homepage-content {
+        padding: 0px;
+    }
+
+    .contact-container {
+        width: 100%;
+        padding: 0px 10px;
+    }
+
+    .contact-content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .contact-userDetails {
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1023px) {
+    .contact-container {
+        width: 100%;
+        padding: 0px 10px;
+    }
+
+    .contact-content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .contact-userDetails {
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+    .contact-container {
+        width: 100%;
+        padding: 0px 10px;
+    }
+
+    .contact-content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .contact-userDetails {
+        flex-direction: column;
+    }
 }

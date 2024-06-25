@@ -81,17 +81,19 @@
     font-size: 18px;
     font-weight: 400;
 }
+
 /* .nav-links a{
     color: #024d3ef9;
     text-decoration: none;
 } */
 
 /* Admin-user */
-.admin-user-container{
+.admin-user-container {
     padding-right: 20px;
 }
-.admin-details{
-    display:flex;
+
+.admin-details {
+    display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 15px;
@@ -100,11 +102,18 @@
     padding: 4px 12px;
     color: #FFFFFF;
     font-size: 18px;
-    }
-    .admin-details span:nth-child(2){
+}
+
+.admin-details span:nth-child(1) {
+    white-space: nowrap;        
+    overflow: hidden;           
+    text-overflow: ellipsis;    
+    width: fit-content;          
+}
+.admin-details span:nth-child(2) {
     background-color: #FFFFFF;
     color: #000000;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     margin-right: -5px;
@@ -115,6 +124,43 @@
     border-radius: 50%;
     font-size: 18px;
 }
+
+.user-container .dropdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-container .dropdown button {
+    width: fit-content;
+    border-radius: 30px;
+    font-size: 24px;
+    background-color: #026451;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 0px 20px;
+}
+
+.user-container .dropdown ul {
+    border-radius: 4px;
+    font-size: 18px;
+    background-color: #FFFFFF;
+    background: transparent;
+    color: #026451;
+    border: 2px solid #026451;
+    padding: 0px 20px;
+    margin-top: 5px !important;
+}
+
+.user-container .dropdown ul li:hover {
+    cursor: pointer;
+    font-weight: 600;
+}
+
 @keyframes slideFromTop {
     from {
         transform: translateY(-60%);
@@ -125,3 +171,125 @@
         transform: translateY(0%);
     }
 }
+
+@keyframes slideFromRight {
+    from {
+        transform: translateX(60%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slideToRight {
+    from {
+        transform: translateX(-0%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.nav-icon {
+    display: none;
+    font-size: 24px;
+}
+
+/* Media Query */
+
+@media screen and (max-width: 766px) {
+    .nav-login-btn {
+        height: 35px;
+        width: 140px;
+        margin-right: 10px;
+    }
+
+    .login-options {
+        right: 10px;
+        width: 141px;
+    }
+
+    .nav-icon {
+        display: block;
+        font-size: 24px;
+        padding-right: 15px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .responsive-nav-links {
+        position: absolute;
+        right: 0;
+        top: 45px;
+        z-index: 5;
+        height: 100%;
+        width: 30%;
+        background-color: #024d3ee8;
+        color: #FFFFFF !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        animation: slideFromRight 1s ease forwards;
+        /* animation: slideToRight 1s ease forwards; */
+    }
+
+    /* .nav-login-btn {
+        display: none;
+    } */
+    .admin-user-container {
+        padding-right: 10px;
+        width: 40%;
+    }
+     .admin-details{
+        /* width: 100%; */
+        gap: 5px;
+     }
+    .admin-details span:nth-child(1) {   
+        width: 60%;          
+    }
+    .admin-details span:nth-child(2) {   
+        /* width: 50%;           */
+    }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1023px) {
+    .nav-icon {
+        display: block;
+        font-size: 24px;
+        padding-right: 15px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .responsive-nav-links {
+        position: absolute;
+        right: 0;
+        top: 45px;
+        z-index: 5;
+        height: 100%;
+        width: 30%;
+        background-color: #024d3ee8;
+        color: #FFFFFF !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        animation: slideFromRight 1s ease forwards;
+        /* animation: slideToRight 1s ease forwards; */
+    }
+
+    /* .nav-login-btn {
+        display: none;
+    } */
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {}

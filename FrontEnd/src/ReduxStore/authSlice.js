@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const BASE_URL = 'http://localhost:5000/feedback/api/user';
+const BASE_URL = 'https://feedback-collection-system-5t4k.onrender.com/feedback/api/user';
 
 export const registerUser = createAsyncThunk('auth/register', async (user) => {
     const response = await fetch(`${BASE_URL}/signup`, {
@@ -12,7 +12,7 @@ export const registerUser = createAsyncThunk('auth/register', async (user) => {
     });
     if (!response.ok) {
         const error = await response.json();
-        console.log(error);
+        console.log(error.message);
         throw new Error(error.message || 'Failed to register');
     }
     return await response.json();
@@ -33,9 +33,12 @@ export const loginUser = createAsyncThunk('auth/login', async (credentials) => {
     return await response.json();
 });
 
-export const logoutUser = createAsyncThunk('auth/logout', async () => {
+export const logoutUser = createAsyncThunk('auth/logout', async (token) => {
     const response = await fetch(`${BASE_URL}/logout`, {
         method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+        }
     });
     if (!response.ok) {
         const error = await response.json();

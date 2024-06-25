@@ -1,7 +1,7 @@
 import React from 'react'
 import './Pagination.css'
 
-const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
+const  Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
     const handlePrevious = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
@@ -20,7 +20,7 @@ const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
 
     return (
         <nav aria-label="Page navigation example">
-            <ul className="pagination d-flex justify-content-center align-items-end">
+            <ul className="pagination pagination-sm d-flex justify-content-center align-items-center">
                 <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
                     <button className="page-link" onClick={handlePrevious}>Previous</button>
                 </li>

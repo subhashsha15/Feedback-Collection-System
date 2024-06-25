@@ -1,7 +1,8 @@
-.dashboard-container{
+.dashboard-container {
     height: 100%;
     width: 100%;
 }
+
 .dashboard-content {
     display: flex;
     flex-direction: column;
@@ -27,14 +28,16 @@
     width: 20%;
     height: 92px;
     padding: 10px 20px;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     color: #767676;
 }
-.dashboard-content-top div span:nth-child(1){
+
+.dashboard-content-top div span:nth-child(1) {
     font-size: 22px;
     font-weight: 900;
 }
-.dashboard-content-top div span:nth-child(2){
+
+.dashboard-content-top div span:nth-child(2) {
     font-size: 16px;
 }
 
@@ -48,43 +51,107 @@
 .dashboard-card {
     height: 250px;
     width: 235px;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     border-radius: 10px;
     overflow: hidden;
 }
-.dashboard-card-bottom{
+
+.dashboard-card-bottom {
     display: flex;
     flex-direction: column;
     gap: 8px;
     padding: 4px 10px;
     margin-top: 8px;
 }
+
 .dashboard-card-img {
     padding: 0px 8px;
     height: 160px;
     width: 230px;
 }
+
 .dashboard-card-img img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center center;
 }
-.dashboard-card-title{
+
+.dashboard-card-title {
     font-size: 16px;
     color: #111827;
 }
-.dashboard-card-info{
+
+.dashboard-card-info {
     display: flex;
     align-items: center;
     gap: 4px;
     font-size: 12px;
 }
-.dashboard-card-info span:nth-child(3){
+
+.dashboard-card-info span:nth-child(3) {
     align-items: end;
     margin-left: 70px;
 }
-.dashboard-card-footer{
+
+.dashboard-card-footer {
     color: #0a0a0c69;
     font-size: 13px;
+}
+
+/* Media Query */
+
+@media screen and (max-width: 766px) {
+    .dashboard-content-top div {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .dashboard-card {
+        height: fit-content;
+        width: 100%;
+    }
+
+    .dashboard-card-img {
+        width: 100%;
+        height: 50%;
+    }
+
+}
+
+@media screen and (min-width: 767px) and (max-width: 1023px) {
+    .admin-content-sidebar {
+        display: none;
+    }
+
+    .dashboard-content-top div {
+        width: 45%;
+    }
+
+    .dashboard-card {
+        height: fit-content;
+        width: 46%;
+    }
+
+    .dashboard-card-img {
+        width: 100%;
+        height: 50%;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+
+    .dashboard-content-top div {
+        width: 45%;
+    }
+
+    .dashboard-card {
+        height: fit-content;
+        width: 46%;
+    }
+
+    .dashboard-card-img {
+        width: 100%;
+        height: 50%;
+    }
 }

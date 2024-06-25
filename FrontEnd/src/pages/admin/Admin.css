@@ -1,8 +1,6 @@
 .admin-container {
     width: 100%;
-    height: 100vh;
-    /* height: 1px; */
-    /* height: 100%; */
+    height: fit-content;
 }
 
 .admin-content {
@@ -13,6 +11,7 @@
 .admin-content-sidebar {
     width: 25%;
     background-color: #FFFFFF;
+    transition: all 0.3s ease-in-out;
 }
 
 .admin-sidebar-list {
@@ -52,6 +51,7 @@
 .vertical-line {
     border-right: 4px solid #024d3eeb;
     margin: 0px 8px;
+    /* height: 100%; */
 }
 
 .admin-content-main {
@@ -59,4 +59,102 @@
     width: 100%;
     height: 100%;
     padding: 20px;
+}
+
+/*  */
+.responsive-sidebar {
+    /* display: none; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* height: 20%; */
+    height: fit-content;
+    /* background-color: #FFFFFF; */
+    background-color: aqua;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    /* Space for the close button */
+}
+
+
+/* Sidebar toggle button */
+.sidebar-toggle-button {
+    display: none;
+    position: fixed;
+    top: 10px;
+    right: 0px;
+    z-index: 1001;
+    /* background-color: #024d3eeb; */
+    /* color: #FFFFFF; */
+    background: none;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/*  */
+/* Media Query */
+
+@media screen and (max-width: 766px) {
+    .admin-content-sidebar {
+        display: none;
+    }
+
+    .admin-content-main {
+        padding: 0px;
+    }
+
+    .sidebar-toggle-button {
+        display: block;
+    }
+
+    .responsive-sidebar {
+        display: block;
+    }
+
+    .admin-sidebar-list .admin-logout {
+        width: 100%;
+        /* height: fit-content; */
+        position: relative;
+        bottom: 0px;
+        background: none;
+    }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1023px) {
+    .admin-content-sidebar {
+        display: none;
+    }
+
+    .sidebar-toggle-button {
+        display: block;
+    }
+
+    .responsive-sidebar {
+        display: block;
+    }
+
+    .responsive-sidebar .admin-sidebar-list .admin-logout {
+        width: 100%;
+        /* height: fit-content; */
+        position: relative;
+        bottom: 0px;
+        background: none;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+    .admin-content-sidebar {
+        display: block;
+    }
+
+    .responsive-sidebar {
+        display: none;
+    }
+
 }

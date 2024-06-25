@@ -54,7 +54,7 @@ const Form = () => {
     }, []);
 
     const handleModalClose = () => {
-        // navigate("/home");
+        navigate("/home");
     };
     const handleSubmit = (values, { setSubmitting, resetForm }) => {
         const formattedData = {

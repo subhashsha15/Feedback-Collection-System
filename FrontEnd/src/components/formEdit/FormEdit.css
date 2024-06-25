@@ -66,3 +66,25 @@ textarea {
 .disable-btn button{
     background-color: #105b3d9c;
 }
+
+/* Media Query */
+
+@media screen and (max-width: 766px) {
+    .formedit-field {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* align-items: center; */
+        gap: 10px;
+
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1023px) {
+   
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+   
+}

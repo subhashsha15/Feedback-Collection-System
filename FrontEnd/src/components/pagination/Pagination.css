@@ -6,3 +6,9 @@
 .page-link:focus {
     box-shadow: none !important;
 }
+
+@media screen and (max-width: 766px) {
+    .pagination {
+        width: 100%;
+    }
+}

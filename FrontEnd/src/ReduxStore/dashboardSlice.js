@@ -1,7 +1,7 @@
 // dashboardSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const apiUrl = 'http://localhost:5000/feedback/api';  // Replace with your actual API URL
+const apiUrl = 'https://feedback-collection-system-5t4k.onrender.com/feedback/api';  // Replace with your actual API URL
 
 // Async thunk to fetch dashboard statistics
 export const fetchDashboardStats = createAsyncThunk('dashboard/fetchDashboardStats', async () => {

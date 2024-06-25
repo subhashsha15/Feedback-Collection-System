@@ -15,7 +15,7 @@ export const FormData = [
         formId: 1,
         formCardImg: EventImg,
         formImg: EventFormImg,
-        formTitle: "Event FeedBack Form",
+        formTitle: "Event Feedback Form",
         formDescription: "Thank you for attending Tech Innovators Summit 2024, a premier event showcasing the latest advancements and trends in technology.",
         formFields: [
             {
@@ -93,7 +93,7 @@ export const FormData = [
         formId: 2,
         formCardImg: CourseImg,
         formImg: CourseFormImg,
-        formTitle: "Course FeedBack Form",
+        formTitle: "Course Feedback Form",
         formDescription: "Thank you for participating in our Advanced Web Development course.Your feedback helps us enhance the learning experience for future participants.",
         formFields: [
             {
@@ -171,7 +171,7 @@ export const FormData = [
         formId: 3,
         formCardImg: EmployeeImg,
         formImg: EmployeeFormImg,
-        formTitle: "Employee FeedBack Form",
+        formTitle: "Employee Feedback Form",
         formDescription: "We value your insights on your workplace experience; please provide feedback to help us improve our company environment and processes.",
         formFields: [
             {
@@ -254,7 +254,7 @@ export const FormData = [
         formId: 4,
         formCardImg: WebsiteImg,
         formImg: WebsiteFormImg,
-        formTitle: "Website FeedBack Form",
+        formTitle: "Website Feedback Form",
         formDescription: "Thank you for visiting our site; your feedback is crucial in helping us improve our website's functionality and user experience.",
         formFields: [
             {
@@ -337,7 +337,7 @@ export const FormData = [
         formId: 5,
         formCardImg: TeacherImg,
         formImg: TeacherFormImg,
-        formTitle: "Teacher FeedBack Form",
+        formTitle: "Teacher Feedback Form",
         formDescription: "We appreciate your thoughts on our teaching methods and faculty; your feedback helps us ensure high-quality education and support for our students.",
         formFields: [
             {

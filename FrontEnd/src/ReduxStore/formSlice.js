@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 
-const apiUrl = 'http://localhost:5000/feedback/api';  // Replace with your actual API URL
+const apiUrl = 'https://feedback-collection-system-5t4k.onrender.com/feedback/api';  // Replace with your actual API URL
 
 export const fetchForms = createAsyncThunk('forms/fetchForms', async () => {
     const response = await fetch(`${apiUrl}/form/fetch`, {
