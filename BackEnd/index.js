@@ -27,7 +27,7 @@ const app = express();
 // }));
 //Middlewares
 // const allowedOrigins = ['http://localhost:5173', 'https://kaleidoscopic-cobbler-17f567.netlify.app','https://scdfv2l4-5173.inc1.devtunnels.ms'];
-const allowedOrigins = 'https://kaleidoscopic-cobbler-17f567.netlify.app';
+const allowedOrigins = 'https://sk-feedback.netlify.app/admin';
 
 app.use(cors({
   origin: function(origin, callback){
