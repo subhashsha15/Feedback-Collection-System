@@ -7,7 +7,6 @@ const Footer = () => {
                 <div className="footer-content">
                     <div className="footer-content-top">
                         <div className="footer-logo">
-                            {/* <img src="/footer-logo.svg" alt="" /> */}
                             FeedBack
                         </div>
                         <div className="footer-list">

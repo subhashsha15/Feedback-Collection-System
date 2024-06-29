@@ -5,11 +5,9 @@ import './FeedbackResponse.css';
 import ResponseCard from '../responseCard/ResponseCard';
 
 const FeedbackResponse = ({ forms: initialForms }) => {
-    console.log("feedbackresponse", initialForms); // Log initial forms for debugging
     const dispatch = useDispatch();
     const filteredForms = useSelector((state) => state.forms.filteredForms) || [];
     const [forms, setForms] = useState(Array.isArray(initialForms) ? initialForms : []); // Ensure forms is an array
-    console.log("feedbackresponse filterdforms=", filteredForms); // Log initial forms for debugging
 
     const [selectedCountry, setSelectedCountry] = useState('');
     const [selectedState, setSelectedState] = useState('');
@@ -42,7 +40,6 @@ const FeedbackResponse = ({ forms: initialForms }) => {
             item.fields.filter(field => field.label === "Country").map(field => field.value)
         );
         return [...new Set(countries)].sort();
-        // return uniqueCountries.sort();
     };
 
     const getStates = (forms) => {

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchForms } from '../../ReduxStore/formSlice';
 import { FaBars } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
+import {useNavigate } from 'react-router-dom';
 
 const Admin = () => {
   const [selectedItem, setSelectedItem] = useState("dashboard");
@@ -15,6 +16,7 @@ const Admin = () => {
   const forms = useSelector((state) => state.forms.forms.data);
   const status = useSelector((state) => state.forms.status);
   const error = useSelector((state) => state.forms.error);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchForms());
@@ -26,6 +28,7 @@ const Admin = () => {
   };
   const handleAdminLogOut = () => {
     setShow(false); // Close the sidebar when an item is clicked
+    navigate("/");
   };
 
   return (

@@ -65,7 +65,7 @@ const FormField = ({ field }) => {
             );
         case "rating":
             return (
-                <div className="rectangle-box" onClick={(e)=>console.log(e)}>
+                <div className="rectangle-box">
                     <label>{field.label}</label>
                     <StarRating field={field} />
                     <ErrorMessage name={field.name} component="div" className="error" />

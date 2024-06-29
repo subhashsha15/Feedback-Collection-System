@@ -17,7 +17,6 @@ const SignUp = () => {
     const [alertMessage, setAlertMessage] = useState('');
     const dispatch = useDispatch();
     const { loading, error, user } = useSelector((state) => state.auth);
-    console.log("error",error);
     const loginStatus = useSelector((state) => state.login);
     const navigate = useNavigate();
 

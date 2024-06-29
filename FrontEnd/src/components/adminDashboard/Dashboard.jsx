@@ -37,7 +37,7 @@ const Dashboard = () => {
     }
 
     if (status === 'failed') {
-        return <div>Error: {error}</div>;
+        return <div style={{textTransform:"capitalize"}}>Error: {error}</div>;
     }
 
     return (

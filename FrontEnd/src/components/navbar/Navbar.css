@@ -1,6 +1,5 @@
 .nav-container {
     width: 100%;
-    /* background-color: #D9DFE5; */
 }
 
 .nav-content {
@@ -82,11 +81,6 @@
     font-weight: 400;
 }
 
-/* .nav-links a{
-    color: #024d3ef9;
-    text-decoration: none;
-} */
-
 /* Admin-user */
 .admin-user-container {
     padding-right: 20px;
@@ -143,6 +137,8 @@
     align-items: center;
     gap: 10px;
     padding: 0px 20px;
+    text-transform: capitalize;
+    margin-right: 10px;
 }
 
 .user-container .dropdown ul {
@@ -197,6 +193,22 @@
     font-size: 24px;
 }
 
+.responsive-nav-links {
+    position: absolute;
+    right: 0;
+    top: 45px;
+    z-index: 5;
+    height: 100%;
+    width: 30%;
+    background-color: #024d3ee8;
+    color: #FFFFFF !important;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    animation: slideFromRight 1s ease forwards;
+}
 /* Media Query */
 
 @media screen and (max-width: 766px) {
@@ -222,39 +234,21 @@
     }
 
     .responsive-nav-links {
-        position: absolute;
-        right: 0;
-        top: 45px;
-        z-index: 5;
-        height: 100%;
-        width: 30%;
-        background-color: #024d3ee8;
-        color: #FFFFFF !important;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 20px;
-        animation: slideFromRight 1s ease forwards;
-        /* animation: slideToRight 1s ease forwards; */
     }
 
-    /* .nav-login-btn {
-        display: none;
-    } */
     .admin-user-container {
-        padding-right: 10px;
+        padding-right: 15px;
         width: 40%;
     }
      .admin-details{
-        /* width: 100%; */
-        gap: 5px;
+        width: 80%;
      }
     .admin-details span:nth-child(1) {   
-        width: 60%;          
+        width: 100%;          
     }
     .admin-details span:nth-child(2) {   
-        /* width: 50%;           */
+        width:100%;          
     }
 }
 
@@ -270,26 +264,30 @@
     }
 
     .responsive-nav-links {
-        position: absolute;
-        right: 0;
-        top: 45px;
-        z-index: 5;
-        height: 100%;
-        width: 30%;
-        background-color: #024d3ee8;
-        color: #FFFFFF !important;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 20px;
-        animation: slideFromRight 1s ease forwards;
-        /* animation: slideToRight 1s ease forwards; */
     }
 
-    /* .nav-login-btn {
-        display: none;
-    } */
+    .admin-user-container {
+        margin-right: 30px;
+    }
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1439px) {}
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+    .nav-icon {
+        display: block;
+        font-size: 24px;
+        padding-right: 15px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .responsive-nav-links {
+        display: flex;
+    }
+
+    .admin-user-container {
+        margin-right: 30px;
+    }
+}

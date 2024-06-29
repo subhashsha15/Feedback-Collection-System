@@ -15,8 +15,7 @@ const Navbar = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { user } = useSelector((state) => state.auth);
-    console.log("user from navbar", user);
-    console.log("user from navbar", user?.data?.name.split(" ")[0]);
+
     const handleLoginButtonClick = () => {
         setShowLoginOption(prev => !prev);
     };
@@ -35,19 +34,9 @@ const Navbar = () => {
         color: "#024d3ef9",
         textDecoration: "none"
     };
-    const responsiveNavLinkStyles = {
-        fontWeight: "normal",
-        color: "#FFFFFF",
-        textDecoration: "none"
-    };
 
     const activeStyles = {
         color: "#049822",
-        textDecoration: "none",
-        fontWeight: "600"
-    };
-    const responsiveActiveStyles = {
-        color: "#12AA5B",
         textDecoration: "none",
         fontWeight: "600"
     };
@@ -88,10 +77,10 @@ const Navbar = () => {
                                     {
                                         location.pathname === '/home' && (
                                             <>
-                                                <Link to="/home" id="about-link" style={activeLink == "home" ? show ? responsiveActiveStyles : activeStyles : show ? responsiveNavLinkStyles : navLinkStyles} onClick={() => handleNavLinkClick('home')}>Home</Link>
-                                                <Link to="#about" id="about-link" style={activeLink == "about" ? show ? responsiveActiveStyles : activeStyles : show ? responsiveNavLinkStyles : navLinkStyles} onClick={() => handleNavLinkClick('about')}>About</Link>
-                                                <Link to="#forms" id="forms-link" style={activeLink == "forms" ? show ? responsiveActiveStyles : activeStyles : show ? responsiveNavLinkStyles : navLinkStyles} onClick={() => handleNavLinkClick('forms')}>Forms</Link>
-                                                <Link to="#contact" id="contact-link" style={activeLink == "contact" ? show ? responsiveActiveStyles : activeStyles : show ? responsiveNavLinkStyles : navLinkStyles} onClick={() => handleNavLinkClick('contact')}>Contact Us</Link>
+                                                <Link to="/home" id="about-link" style={activeLink == "home" ? activeStyles : navLinkStyles} onClick={() => handleNavLinkClick('home')}>Home</Link>
+                                                <Link to="#about" id="about-link" style={activeLink == "about" ? activeStyles : navLinkStyles} onClick={() => handleNavLinkClick('about')}>About</Link>
+                                                <Link to="#forms" id="forms-link" style={activeLink == "forms" ? activeStyles : navLinkStyles} onClick={() => handleNavLinkClick('forms')}>Forms</Link>
+                                                <Link to="#contact" id="contact-link" style={activeLink == "contact" ? activeStyles : navLinkStyles} onClick={() => handleNavLinkClick('contact')}>Contact Us</Link>
                                             </>
                                         )
                                     }
@@ -118,8 +107,6 @@ const Navbar = () => {
                                         </>
                                     )
                                 }
-
-
                             </>
                         )
                     }
@@ -136,7 +123,7 @@ const Navbar = () => {
                         </div>)
                     }
                     {
-                        location.pathname !== '/' || location.pathname==='/admin' && (
+                        location.pathname !== '/' || location.pathname === '/admin' && (
                             <>
                                 <div className="nav-icon" onClick={() => setShow(!show)}>
                                     {!show ? <FaBars /> : <RxCross2 />}

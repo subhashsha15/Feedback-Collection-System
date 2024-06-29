@@ -11,20 +11,35 @@ const dashboardRoute = require("./Routes/dashBoard.Route.js")
 const cors = require('cors');
 const app = express();
 
-const allowedOrigin = 'https://kaleidoscopic-cobbler-17f567.netlify.app';
+// const allowedOrigin = 'https://kaleidoscopic-cobbler-17f567.netlify.app';
+// const allowedOrigin = 'http://localhost:5173';
+
+// app.use(cors({
+//   origin: function(origin, callback){
+//     // Allow requests with no origin, like mobile apps or curl requests
+//     if(!origin) return callback(null, true);
+//     if(origin !== allowedOrigin){
+//       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+//       return callback(new Error(msg), false);
+//     }
+//     return callback(null, true);
+//   }
+// }));
+//Middlewares
+// const allowedOrigins = ['http://localhost:5173', 'https://kaleidoscopic-cobbler-17f567.netlify.app','https://scdfv2l4-5173.inc1.devtunnels.ms'];
+const allowedOrigins = 'https://kaleidoscopic-cobbler-17f567.netlify.app';
 
 app.use(cors({
   origin: function(origin, callback){
     // Allow requests with no origin, like mobile apps or curl requests
     if(!origin) return callback(null, true);
-    if(origin !== allowedOrigin){
+    if(allowedOrigins.indexOf(origin) === -1){
       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
       return callback(new Error(msg), false);
     }
     return callback(null, true);
   }
 }));
-//Middlewares
 app.use(express.json());
 
 const port = 5000;

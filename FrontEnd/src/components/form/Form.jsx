@@ -6,14 +6,18 @@ import "./Form.css";
 import { FormData } from "../../FormTypesData";
 import FormField from "../formField/FormField";
 import { useDispatch, useSelector } from 'react-redux';
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { submitForm } from '../../ReduxStore/formSlice';
+import Alert from '../../components/alert/Alert';
+
 const Form = () => {
     const { title } = useParams();
     const formDetails = FormData.find((form) => form.formTitle === title);
+    const { error } = useSelector((state) => state.forms);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
+
     if (!formDetails) {
         return <div>Form not found</div>;
     }
@@ -39,7 +43,7 @@ const Form = () => {
                     acc[field.name] = Yup.string().required("Select One Option");
                     break;
                 case "rating":
-                    acc[field.name] = Yup.number().required("Select Atleast 1 Star");
+                    acc[field.name] = Yup.number().required("Select At least 1 Star");
                     break;
                 default:
                     acc[field.name] = Yup.string().required("This field is required");
@@ -54,8 +58,10 @@ const Form = () => {
     }, []);
 
     const handleModalClose = () => {
+        setShowAlert(false);
         navigate("/home");
     };
+
     const handleSubmit = (values, { setSubmitting, resetForm }) => {
         const formattedData = {
             formTitle: title,
@@ -65,10 +71,20 @@ const Form = () => {
             }))
         };
 
-        dispatch(submitForm(formattedData));
-        setSubmitting(false);
-        resetForm();
+        dispatch(submitForm(formattedData)).then((action) => {
+            if (action.error) {
+                setAlertMessage(action.error.message);
+                setShowAlert(true);
+                setSubmitting(false);
+            } else {
+                setAlertMessage('Response Successfully Submitted 😀😀');
+                setShowAlert(true);
+                setSubmitting(false);
+                resetForm();
+            }
+        });
     };
+
     return (
         <div className="form-container">
             <div className="form-content">
@@ -80,7 +96,7 @@ const Form = () => {
                         <div className="form-title-name">{formDetails.formTitle}</div>
                         <div className="form-title-desc">{formDetails.formDescription}</div>
                     </div>
-                    <Formik className="formik-css"
+                    <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}
                         onSubmit={handleSubmit}
@@ -94,9 +110,6 @@ const Form = () => {
                                     <button type="reset" className="clear-btn">Clear</button>
                                     <button
                                         type="submit"
-                                        // data-bs-toggle={isValid ? "modal" : ""}
-                                        // data-bs-dismiss={isValid ? "" : "modal"}
-                                        data-bs-target={isValid ? "" : "#exampleModal"}
                                         className="form-submit-btn"
                                         disabled={isSubmitting}
                                     >
@@ -106,25 +119,15 @@ const Form = () => {
                             </FormikForm>
                         )}
                     </Formik>
-                    {/* Boostrap Modal */}
-                    {/* <!-- Modal --> */}
-                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title w-100 text-center fs-2" id="exampleModalLabel">CONGRATULATIONS!!!</h5>
-                                </div>
-                                <div className="modal-body  w-100 text-center fs-6">
-                                    Response Successfully Submitted 😀😀
-                                </div>
-                                <div className="modal-footer" onClick={handleModalClose}>
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
+            {showAlert && (
+                 <Alert
+                 Status={error ? "Error" : "CONGRATULATIONS!!!"}
+                 Message={alertMessage}
+                 onClose={handleModalClose}
+             />
+            )}
         </div>
     );
 };

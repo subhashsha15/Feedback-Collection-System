@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+
 const BASE_URL = 'https://feedback-collection-system-5t4k.onrender.com/feedback/api/user';
 
 export const registerUser = createAsyncThunk('auth/register', async (user) => {
@@ -12,7 +13,6 @@ export const registerUser = createAsyncThunk('auth/register', async (user) => {
     });
     if (!response.ok) {
         const error = await response.json();
-        console.log(error.message);
         throw new Error(error.message || 'Failed to register');
     }
     return await response.json();
@@ -96,5 +96,5 @@ const authSlice = createSlice({
     },
 });
 
-// export const { registerUser, loginUser, logoutUser } = authSlice.actions;
+
 export default authSlice.reducer;
