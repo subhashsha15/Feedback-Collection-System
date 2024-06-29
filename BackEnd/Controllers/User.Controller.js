@@ -1,7 +1,7 @@
 const User = require('../Models/User.Model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
- 
+const Session = require('../Models/Session.Model');
 
 const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
 const timestamp = new Date().toLocaleDateString('en-US', options);
@@ -76,9 +76,12 @@ const userLogin = async (req, res) => {
         }
 
         const token = jwt.sign(payload, jwtSecretKey);
-        await User.findByIdAndUpdate(existingUser._id, { token: token }) 
+        await User.findByIdAndUpdate(existingUser._id, { token: token })
 
-          res.json({
+        const newSession = new Session({ userId: existingUser._id });
+        await newSession.save();
+
+        res.json({
             success: true,
             data: { ...existingUser._doc, token },
             message: "User logged in successfully"
@@ -94,6 +97,14 @@ const userLogin = async (req, res) => {
 const userLogout = async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];;
     const decodedToken = jwt.decode(token);
+
+    // Find the session and update it with the end time
+    const session = await Session.findOne({ userId: decodedToken._id, endedAt: null });
+    if (session) {
+        session.endedAt = new Date();
+        await session.save();
+    }
+
     await User.findByIdAndUpdate(decodedToken._id, { token: "" });
     res.json({
         success: true,
