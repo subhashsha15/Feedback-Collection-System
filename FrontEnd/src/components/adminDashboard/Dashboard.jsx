@@ -14,7 +14,6 @@ const Dashboard = () => {
         status,
         error
     } = useSelector((state) => state.dashboard);
-    console.log("dashboard forms", forms);
     useEffect(() => {
         dispatch(fetchDashboardStats());
     }, [dispatch]);
@@ -33,7 +32,7 @@ const Dashboard = () => {
     };
 
     if (status === 'loading') {
-        return <div>Loading...</div>;
+        return <div className='loader'><img src="/Spinner.gif" alt="" /></div>;
     }
 
     if (status === 'failed') {

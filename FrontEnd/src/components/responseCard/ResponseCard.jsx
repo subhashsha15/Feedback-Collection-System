@@ -70,7 +70,7 @@ const ResponseCard = ({ forms }) => {
             <div className="response-card-container">
                 <div className="response-card-content">
                     {loading ? (
-                        <div className="loading-spinner">Loading...</div>
+                        <div className='loader'><img src="/Spinner.gif" alt="" /></div>
                     ) : (
                         <Accordion activeKey={activeKey}>
                             {currentForms.map((form, index) => (

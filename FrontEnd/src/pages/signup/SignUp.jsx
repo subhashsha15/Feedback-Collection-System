@@ -78,7 +78,7 @@ const SignUp = () => {
                     <img src="/Signup-img.png" alt="" />
                 </div>
                 <div className="signup-content-right">
-                    {loading && <div className="loading-spinner">Loading...</div>}
+                    {loading && <div className='loader'><img src="/Spinner.gif" alt="" /></div>}
                     {(!loading && isSignUpSuccessful) && (
                         <div className="signup-success-container">
                             <img src="/success-img.png" alt="" />

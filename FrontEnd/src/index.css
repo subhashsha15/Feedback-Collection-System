@@ -13,4 +13,9 @@ body{
   text-decoration: none;
   color: inherit;
 }
+
+.loader{
+   display: grid;
+   place-items: center;
+}
 /* CSS Reset for Form Elements */
