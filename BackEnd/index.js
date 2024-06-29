@@ -1,17 +1,17 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require('dotenv');
+mongoose.set('strictQuery', true);
 
 dotenv.config();
-const usersRoute=require("./Routes/userRoute.js");
-const formRoute=require("./Routes/Form.Route.js")
-const dashboardRoute=require("./Routes/dashBoard.Route.js")
+const usersRoute = require("./Routes/userRoute.js");
+const formRoute = require("./Routes/Form.Route.js")
+const dashboardRoute = require("./Routes/dashBoard.Route.js")
 
 const cors = require('cors');
 const app = express();
 
 //Middlewares
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
 
 const port = 5000;
@@ -24,6 +24,7 @@ const connectDB = async () => {
         console.log("error occurred while connecting mongodb!", error)
     }
 }
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 app.use('/feedback/api/user', usersRoute);
 app.use('/feedback/api/form', formRoute);
@@ -32,7 +33,5 @@ app.use('/feedback/api', dashboardRoute);
 
 app.listen(port, () => {
     connectDB();
-    console.log(`Server is running on port ${port}`);
-})
-
-
+    console.log(`Server is running on port ${port}`); 
+}) 
