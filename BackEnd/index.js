@@ -11,6 +11,7 @@ const dashboardRoute = require("./Routes/dashBoard.Route.js")
 const cors = require('cors');
 const app = express();
 
+app.use(cors({ origin: "https://kaleidoscopic-cobbler-17f567.netlify.app", credentials: true }));
 //Middlewares
 app.use(express.json());
 
@@ -24,7 +25,6 @@ const connectDB = async () => {
         console.log("error occurred while connecting mongodb!", error)
     }
 }
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 app.use('/feedback/api/user', usersRoute);
 app.use('/feedback/api/form', formRoute);
